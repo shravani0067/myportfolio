@@ -1,0 +1,35 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Website Files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+
+      - name: Simulate Deployment
+        run: |
+          echo "Deploying website..."
+          sleep 2
+          echo "Deployment completed successfully."
+
+      - name: Deployment Notification
+        run: |
+          echo "===================================="
+          echo "Deployment Status : SUCCESS"
+          echo "Repository : ${{ github.repository }}"
+          echo "Branch : ${{ github.ref_name }}"
+          echo "Commit : ${{ github.sha }}"
+          echo "===================================="
