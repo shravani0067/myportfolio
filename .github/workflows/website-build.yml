@@ -1,0 +1,26 @@
+name: HTML Website Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify project files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+
+      - name: Build Step
+        run: echo "Website build completed successfully."
+
+      - name: Display Project Files
+        run: ls -R
